@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/

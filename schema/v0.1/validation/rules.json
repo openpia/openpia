@@ -1,0 +1,344 @@
+{
+    "$id": "https://openpia.org/schema/v0.1/validation/rules.json",
+    "title": "OpenPIA validation rules (A55)",
+    "version": "0.1",
+    "description": "Declarative definitions of what makes an A55 submission complete and compliant. These describe the rules; they do not prescribe an engine, a score, or any machine learning. Whether a photo shows the right thing — content assessment — is out of scope. Derived from a canonical A55 rule set; to be ratified with practitioners.",
+    "families": {
+        "structural": "Submission and point shape — required structure and recognised values.",
+        "evidence": "Evidence slot presence and file integrity.",
+        "cross_field": "Consistency between declared values and physical logic.",
+        "image_quality": "Deterministic image gates — blur, exposure, and resolution."
+    },
+    "severities": {
+        "error": "Blocks a compliant outcome.",
+        "warning": "Advisory.",
+        "info": "Audit note only."
+    },
+    "mandatory_note": "A mandatory rule is always applied. A non-mandatory rule may be switched off per adopter; a disabled rule produces no defect and drops out of any completeness measure, so results stay comparable.",
+    "rules": [
+        {
+            "code": "SUBMISSION_TYPE_VALID",
+            "family": "structural",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "submission_type is a recognised notice type (a55a or a55b)."
+        },
+        {
+            "code": "SUBMISSION_UID_PRESENT",
+            "family": "structural",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "submission_uid is present and a valid UUID — the record's own identity, referenced by A55b stages through parent_submission_uid."
+        },
+        {
+            "code": "HAS_START_AND_END_POINT",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55a",
+            "mandatory": true,
+            "description": "Path works carry both a start point and an end point; point-type works are exempt."
+        },
+        {
+            "code": "BLOCKAGE_POINTS_PRESENT",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55a",
+            "mandatory": true,
+            "description": "Blockage and pole-bend works carry one or two blockage points."
+        },
+        {
+            "code": "POINTS_NON_EMPTY",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55a",
+            "mandatory": true,
+            "description": "At least one work point is present."
+        },
+        {
+            "code": "GPS_WITHIN_UK",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55a",
+            "mandatory": true,
+            "description": "Each point's latitude and longitude fall within United Kingdom bounds."
+        },
+        {
+            "code": "GPS_GRID_CONSISTENT",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A point's latitude/longitude agrees with its easting/northing to within roughly fifty metres."
+        },
+        {
+            "code": "TM_TYPE_VALID",
+            "family": "structural",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "traffic_management is a recognised value."
+        },
+        {
+            "code": "INFRA_TYPE_VALID",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "infrastructure_type is recognised and maps to a category."
+        },
+        {
+            "code": "POINTS_SEQUENTIAL",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "point_index values run sequentially from zero."
+        },
+        {
+            "code": "ROUTE_HAS_SURFACE",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A route-bearing submission declares a surface type."
+        },
+        {
+            "code": "CHAMBER_HAS_DUCT_DATA",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A chamber-category point without duct data is flagged."
+        },
+        {
+            "code": "POLE_HAS_REFERENCE",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A pole point without a distribution-point number is flagged."
+        },
+        {
+            "code": "POINT_HAS_GRID_REF",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A point carrying latitude/longitude but no British National Grid easting/northing is noted."
+        },
+        {
+            "code": "NOI_REFERENCE_PRESENT",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "pia_noi_reference is present."
+        },
+        {
+            "code": "PARENT_SUBMISSION_UID_PRESENT",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55b",
+            "mandatory": true,
+            "description": "parent_submission_uid is present — every A55b civil-evidence report belongs to a parent A55a, and this is the link between them."
+        },
+        {
+            "code": "PARENT_A55A_EXISTS",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55b",
+            "mandatory": false,
+            "description": "parent_submission_uid resolves to a known A55a submission_uid; applied when the parent A55a set is available to the validator."
+        },
+        {
+            "code": "CIVIL_EVIDENCE_STAGE_INCOMPLETE",
+            "family": "structural",
+            "severity": "error",
+            "applies": "a55b",
+            "mandatory": true,
+            "description": "The close-off stage is present across the A55b reports sharing a parent_submission_uid; only close-off is required."
+        },
+        {
+            "code": "EXCAVATION_DIMENSIONS_MISSING",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55b",
+            "mandatory": true,
+            "description": "A repair-and-installation stage carries excavation dimensions."
+        },
+        {
+            "code": "REINSTATEMENT_DIMENSIONS_MISSING",
+            "family": "structural",
+            "severity": "warning",
+            "applies": "a55b",
+            "mandatory": true,
+            "description": "A reinstatement stage carries reinstatement dimensions."
+        },
+        {
+            "code": "REQUIRED_SLOTS_POPULATED",
+            "family": "evidence",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "Every required evidence slot, and every conditional slot whose condition holds, has at least one file. The slot catalogue in evidence/slots.json is the source of which slots apply.",
+            "enforcement": {
+                "reads": "evidence/slots.json",
+                "requirement": "Every slot whose requirement is `required`, and every slot whose requirement is `conditional` and whose `when` condition holds for the submission, has at least one evidence file."
+            }
+        },
+        {
+            "code": "EVIDENCE_GPS_PROXIMITY",
+            "family": "evidence",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "An evidence item is captured within roughly two hundred metres of the point it belongs to."
+        },
+        {
+            "code": "EVIDENCE_TIMESTAMP_PRESENT",
+            "family": "evidence",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "Each evidence item carries a capture timestamp."
+        },
+        {
+            "code": "EVIDENCE_TIMESTAMP_RECENT",
+            "family": "evidence",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "An evidence item's capture timestamp is within thirty days of submission."
+        },
+        {
+            "code": "NO_DUPLICATE_HASHES",
+            "family": "evidence",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": true,
+            "description": "No two evidence files in a submission share the same file_hash, which would mean one image reused across slots."
+        },
+        {
+            "code": "HASH_VERIFIED",
+            "family": "evidence",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "Each evidence item's recorded hash-verification outcome is consistent: where the declared file_hash was checked against the fetched file, the two matched. An item with no file_hash, or one whose file was never fetched, is not verified rather than failed — the byte comparison runs in the fetch pipeline, and this rule reads its recorded result."
+        },
+        {
+            "code": "IMAGE_FETCH_OK",
+            "family": "evidence",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "Each evidence file is retrievable from its file_url."
+        },
+        {
+            "code": "TM_BOARD_WHEN_TM_ACTIVE",
+            "family": "evidence",
+            "severity": "error",
+            "applies": "both",
+            "mandatory": true,
+            "description": "A traffic-management board photograph is present whenever traffic management is active."
+        },
+        {
+            "code": "FILE_TYPE_VALID",
+            "family": "evidence",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "An evidence file matches its declared evidence_type."
+        },
+        {
+            "code": "SLOT_CODES_MATCH_TAXONOMY",
+            "family": "evidence",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "Evidence slot codes belong to the A55a taxonomy for the works type."
+        },
+        {
+            "code": "ROUTE_LENGTH_CONSISTENT",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A declared route length agrees with the summed point-to-point GPS distance to within roughly twenty per cent."
+        },
+        {
+            "code": "BLOCKAGE_SPAN_CONSISTENT",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A declared blockage span agrees with the distance between the blockage points."
+        },
+        {
+            "code": "POLE_BEND_ENDPOINTS",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A pole-bend job starts at a chamber-category point and ends at a pole."
+        },
+        {
+            "code": "CAPACITY_TRIGGERS_EVIDENCE",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "High capacity utilisation calls for additional evidence."
+        },
+        {
+            "code": "ROAD_CLOSURE_SITE_DETAILS",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55a",
+            "mandatory": false,
+            "description": "A road or lane closure carries the relevant site-detail fields."
+        },
+        {
+            "code": "WORK_PLAN_MISMATCH",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55b",
+            "mandatory": true,
+            "description": "Completed works declared not to match the original plan are flagged."
+        },
+        {
+            "code": "JOB_NOT_COMPLETED",
+            "family": "cross_field",
+            "severity": "warning",
+            "applies": "a55b",
+            "mandatory": true,
+            "description": "A close-off stage declaring the job not complete is flagged."
+        },
+        {
+            "code": "IMAGE_NOT_BLURRED",
+            "family": "image_quality",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "An image is not blurred beyond a deterministic sharpness threshold."
+        },
+        {
+            "code": "IMAGE_EXPOSURE_OK",
+            "family": "image_quality",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "An image is neither significantly under- nor over-exposed, by deterministic thresholds."
+        },
+        {
+            "code": "IMAGE_MIN_RESOLUTION",
+            "family": "image_quality",
+            "severity": "warning",
+            "applies": "both",
+            "mandatory": false,
+            "description": "An image meets a minimum resolution."
+        }
+    ]
+}

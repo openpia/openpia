@@ -1,0 +1,51 @@
+# A55 evidence-taxonomy slot summary
+
+Every evidence slot code and the notice(s) it appears in.
+
+| slot_code | notices |
+| --- | --- |
+| ADDITIONAL_EVIDENCE | a55a, a55b |
+| BACK_FILL | a55b |
+| BLOCKAGE_CONTEXT | a55a |
+| BLOCKAGE_MARKED | a55a |
+| CHAMBER_CONTEXT | a55a |
+| CHAMBER_DAMAGE | a55a |
+| CHAMBER_EQUIPMENT | a55a |
+| CHAMBER_INTERNAL | a55a |
+| CHAMBER_LID | a55a |
+| CHAMBER_ROD_BORE | a55a |
+| CLOSEOFF_END | a55b |
+| CLOSEOFF_REINSTATEMENT | a55b |
+| CLOSEOFF_SIGNATURE | a55b |
+| CLOSEOFF_START | a55b |
+| COMPLETED_END | a55b |
+| COMPLETED_START | a55b |
+| EXCAVATION | a55b |
+| HG47_MARKUP | a55b |
+| ITEM_CONTEXT | a55a |
+| ITEM_EXISTING_CHAMBER | a55a |
+| ITEM_EXISTING_POLE | a55a |
+| ITEM_PROPOSED_LOCATION | a55a |
+| POLE_BASE | a55a |
+| POLE_CONTEXT | a55a |
+| POLE_DP_TAG | a55a |
+| POLE_DP_TAG_D_LABEL | a55a |
+| POLE_TOP_ANGLE_1 | a55a |
+| POLE_TOP_ANGLE_2 | a55a |
+| POLE_TOP_ANGLE_3 | a55a |
+| POLE_TOP_ANGLE_4 | a55a |
+| PRE_WORK_DIG | a55b |
+| REINSTATEMENT | a55b |
+| REPAIR_INSTALLATION | a55b |
+| RISK_ASSESSMENT | a55b |
+| ROUTE_MAP | a55a, a55b |
+| SIGNATURE | a55b |
+| SITE_OVERVIEW | a55a, a55b |
+| SITE_SETUP | a55b |
+| SITE_SHUTDOWN | a55b |
+| STRUCTURE_CONTEXT | a55a |
+| STRUCTURE_ENTRY | a55a |
+| TM_BOARD | a55a, a55b |
+| TRACK_SURFACE_CLOSEUP | a55a |
+| TRACK_SURFACE_CONTEXT | a55a |
+| TREE_CUTTING | a55a |

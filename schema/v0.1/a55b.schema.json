@@ -1,0 +1,575 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://openpia.org/schema/v0.1/a55b.schema.json",
+    "title": "OpenPIA A55b — civil evidence report (stage-based)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "submission_type",
+        "submission_uid",
+        "parent_submission_uid",
+        "stage",
+        "evidence_items"
+    ],
+    "properties": {
+        "submission_type": {
+            "const": "a55b",
+            "description": "The notice type this submission represents (a55b — civil evidence report)."
+        },
+        "submission_uid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The origin identity of this submission — a UUID minted by the authoring system and carried unchanged by any receiver."
+        },
+        "parent_submission_uid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The parent A55a's `submission_uid`, carried unchanged. A parent this instance does not hold is accepted: the submission is stored with the link intact and no internal foreign key resolved. All stages of one works series carry the same value."
+        },
+        "schema_code": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^openpia_[a-z0-9]+_v[0-9]+\\.[0-9]+$",
+            "description": "The OpenPIA schema and version this submission is built against, for example openpia_a55b_v0.1."
+        },
+        "external_ref": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "The originator's own external reference for the works."
+        },
+        "pia_noi_reference": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "The PIA notice-of-intent reference for the works."
+        },
+        "stage": {
+            "$ref": "#/$defs/civilEvidenceStage"
+        },
+        "location": {
+            "$ref": "#/$defs/location"
+        },
+        "notice": {
+            "$ref": "#/$defs/notice"
+        },
+        "stage_details": {
+            "$ref": "#/$defs/stageDetails"
+        },
+        "evidence_items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/stageEvidenceItem"
+            },
+            "description": "The items of evidence submitted for this stage."
+        }
+    },
+    "$defs": {
+        "civilEvidenceStage": {
+            "type": "string",
+            "enum": [
+                "preliminary_checks",
+                "repair_installation",
+                "reinstatement",
+                "close_off"
+            ],
+            "description": "The civil-works stage this evidence report covers: preliminary checks, repair and installation, reinstatement, or close-off."
+        },
+        "trafficManagement": {
+            "type": "string",
+            "enum": [
+                "none",
+                "two_way_lights",
+                "three_way_lights",
+                "four_way_lights",
+                "lane_closure",
+                "road_closure",
+                "stop_go_boards",
+                "survey_required",
+                "t_o15"
+            ],
+            "description": "The traffic management arrangement in place at the site, ranging from none through the various signalled and closure options."
+        },
+        "evidenceType": {
+            "type": "string",
+            "enum": [
+                "photo",
+                "video"
+            ],
+            "description": "The kind of file an evidence item carries. This notice accepts photographs and video."
+        },
+        "slotCode": {
+            "type": "string",
+            "enum": [
+                "ADDITIONAL_EVIDENCE",
+                "BACK_FILL",
+                "BLOCKAGE_CONTEXT",
+                "BLOCKAGE_MARKED",
+                "CHAMBER_CONTEXT",
+                "CHAMBER_DAMAGE",
+                "CHAMBER_EQUIPMENT",
+                "CHAMBER_INTERNAL",
+                "CHAMBER_LID",
+                "CHAMBER_ROD_BORE",
+                "CLOSEOFF_END",
+                "CLOSEOFF_REINSTATEMENT",
+                "CLOSEOFF_SIGNATURE",
+                "CLOSEOFF_START",
+                "COMPLETED_END",
+                "COMPLETED_START",
+                "EXCAVATION",
+                "HG47_MARKUP",
+                "ITEM_CONTEXT",
+                "ITEM_EXISTING_CHAMBER",
+                "ITEM_EXISTING_POLE",
+                "ITEM_PROPOSED_LOCATION",
+                "POLE_BASE",
+                "POLE_CONTEXT",
+                "POLE_DP_TAG",
+                "POLE_DP_TAG_D_LABEL",
+                "POLE_TOP_ANGLE_1",
+                "POLE_TOP_ANGLE_2",
+                "POLE_TOP_ANGLE_3",
+                "POLE_TOP_ANGLE_4",
+                "PRE_WORK_DIG",
+                "REINSTATEMENT",
+                "REPAIR_INSTALLATION",
+                "RISK_ASSESSMENT",
+                "ROUTE_MAP",
+                "SIGNATURE",
+                "SITE_OVERVIEW",
+                "SITE_SETUP",
+                "SITE_SHUTDOWN",
+                "STRUCTURE_CONTEXT",
+                "STRUCTURE_ENTRY",
+                "TM_BOARD",
+                "TRACK_SURFACE_CLOSEUP",
+                "TRACK_SURFACE_CONTEXT",
+                "TREE_CUTTING"
+            ],
+            "description": "The evidence slot an item is assigned to — the specific required or optional view within the notice's evidence taxonomy."
+        },
+        "fileHash": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "description": "The SHA-256 hash of the evidence file, as 64 hexadecimal characters."
+        },
+        "latitude": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": -90,
+            "maximum": 90,
+            "description": "Latitude in decimal degrees (WGS84)."
+        },
+        "longitude": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": -180,
+            "maximum": 180,
+            "description": "Longitude in decimal degrees (WGS84)."
+        },
+        "easting": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "maximum": 700000,
+            "description": "Easting in metres on the British National Grid (OSGB36)."
+        },
+        "northing": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "maximum": 1300000,
+            "description": "Northing in metres on the British National Grid (OSGB36)."
+        },
+        "coordinates": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "lat": {
+                    "$ref": "#/$defs/latitude"
+                },
+                "lng": {
+                    "$ref": "#/$defs/longitude"
+                },
+                "easting": {
+                    "$ref": "#/$defs/easting"
+                },
+                "northing": {
+                    "$ref": "#/$defs/northing"
+                }
+            },
+            "description": "A position given as latitude/longitude and/or British National Grid easting/northing."
+        },
+        "location": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "A free-text description of the location."
+                },
+                "postcode": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 8,
+                    "description": "The postcode of the location."
+                },
+                "what3words": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The what3words address identifying the location."
+                },
+                "usrn": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "pattern": "^[0-9]{1,12}$",
+                    "description": "The Unique Street Reference Number (USRN) for the street."
+                },
+                "coordinates": {
+                    "$ref": "#/$defs/coordinates"
+                }
+            },
+            "description": "Where the stage takes place, given as any of a free-text description, postcode, USRN, what3words address, or coordinates."
+        },
+        "notice": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "contractor_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The name of the contractor organisation carrying out the works."
+                },
+                "contractor_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The identifier for the contractor organisation."
+                },
+                "engineer_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Engineer's display name"
+                },
+                "engineer_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The identifier for the engineer on site."
+                },
+                "works_date": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date",
+                    "description": "The date the works were carried out."
+                },
+                "whereabouts_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The identifier of the associated whereabouts record."
+                }
+            },
+            "description": "A55b notice fields (contractor details, works date)"
+        },
+        "stageDetails": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "risk_assessment_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes from the risk assessment. Applies to preliminary_checks."
+                },
+                "h_g47_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes relating to the HG47 markup. Applies to preliminary_checks."
+                },
+                "site_setup_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the site setup. Applies to preliminary_checks."
+                },
+                "traffic_management": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/trafficManagement"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The traffic management arrangement in place. Applies to preliminary_checks."
+                },
+                "safe_for_work_today": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether the site was assessed as safe for work on the day. Applies to preliminary_checks."
+                },
+                "network_adjustment_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "A reference for an associated Openreach network adjustment. Applies to preliminary_checks."
+                },
+                "excavation_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "An identifier for the excavation. Applies to repair_installation."
+                },
+                "excavation_length_m": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The length of the excavation in metres. Applies to repair_installation."
+                },
+                "excavation_width_m": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The width of the excavation in metres. Applies to repair_installation."
+                },
+                "excavation_depth_m": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The depth of the excavation in metres. Applies to repair_installation."
+                },
+                "excavation_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the excavation. Applies to repair_installation."
+                },
+                "preliminary_work_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the preliminary work. Applies to repair_installation."
+                },
+                "repair_installation_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the repair and installation work. Applies to repair_installation."
+                },
+                "back_fill_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the back-filling. Applies to repair_installation."
+                },
+                "reinstatement_length_m": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The length of the reinstatement in metres. Applies to reinstatement."
+                },
+                "reinstatement_width_m": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The width of the reinstatement in metres. Applies to reinstatement."
+                },
+                "reinstatement_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the reinstatement. Applies to reinstatement and close_off."
+                },
+                "start_point_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the start point. Applies to reinstatement and close_off."
+                },
+                "end_point_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the end point. Applies to reinstatement and close_off."
+                },
+                "site_shutdown_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the site shutdown. Applies to reinstatement and close_off."
+                },
+                "work_matched_plan": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether the work carried out matched the original plan. Applies to reinstatement and close_off."
+                },
+                "work_undertaken_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on the work undertaken. Applies to reinstatement and close_off."
+                },
+                "job_completed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether the job was completed. Applies to reinstatement and close_off."
+                },
+                "job_outstanding_notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Notes on any outstanding work. Applies to reinstatement and close_off."
+                }
+            },
+            "description": "Stage-specific detail fields; which apply depends on the declared stage."
+        },
+        "stageEvidenceItem": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "slot_code",
+                "file_hash",
+                "evidence_type"
+            ],
+            "properties": {
+                "slot_code": {
+                    "$ref": "#/$defs/slotCode"
+                },
+                "file_url": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "uri-reference",
+                    "maxLength": 2048,
+                    "description": "A package-relative path or absolute URL to the evidence file; omitted for hash-only slots."
+                },
+                "file_hash": {
+                    "$ref": "#/$defs/fileHash"
+                },
+                "evidence_type": {
+                    "$ref": "#/$defs/evidenceType"
+                },
+                "captured_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "description": "When the evidence was captured (EXIF or device timestamp)"
+                },
+                "captured_lat": {
+                    "$ref": "#/$defs/latitude"
+                },
+                "captured_lng": {
+                    "$ref": "#/$defs/longitude"
+                },
+                "captured_easting": {
+                    "$ref": "#/$defs/easting"
+                },
+                "captured_northing": {
+                    "$ref": "#/$defs/northing"
+                }
+            },
+            "description": "A single item of evidence for this stage: its assigned slot, file reference and SHA-256 hash, type, and capture details. Attaches to the submission, not to a point."
+        }
+    }
+}
