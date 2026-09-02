@@ -18,7 +18,7 @@ jobs:
 
       # uv provisions jsonschema for validate_examples.py from its PEP 723 header,
       # so CI and a local run use exactly the same mechanism.
-      - uses: astral-sh/setup-uv@v8
+      - uses: astral-sh/setup-uv@v9.0.0
         with:
           enable-cache: true
           cache-dependency-glob: tools/requirements.txt
