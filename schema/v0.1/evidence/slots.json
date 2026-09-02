@@ -1,0 +1,1360 @@
+{
+    "$id": "https://openpia.org/schema/v0.1/evidence/slots.json",
+    "title": "OpenPIA evidence slot catalogue (A55)",
+    "version": "0.1",
+    "description": "The evidence slot catalogue: every slot code with its capture guidance and per-context requirements across both notices. A conditional slot carries a machine-readable `when` object — { field, op, value } under a closed grammar — naming the schema field, comparison (equals or not_equals), and enum value that make the slot apply.",
+    "registry": {
+        "ADDITIONAL_EVIDENCE": {},
+        "BACK_FILL": {},
+        "BLOCKAGE_CONTEXT": {},
+        "BLOCKAGE_MARKED": {},
+        "CHAMBER_CONTEXT": {},
+        "CHAMBER_DAMAGE": {},
+        "CHAMBER_EQUIPMENT": {},
+        "CHAMBER_INTERNAL": {},
+        "CHAMBER_LID": {},
+        "CHAMBER_ROD_BORE": {},
+        "CLOSEOFF_END": {},
+        "CLOSEOFF_REINSTATEMENT": {},
+        "CLOSEOFF_SIGNATURE": {
+            "hash_only": true
+        },
+        "CLOSEOFF_START": {},
+        "COMPLETED_END": {},
+        "COMPLETED_START": {},
+        "EXCAVATION": {},
+        "HG47_MARKUP": {},
+        "ITEM_CONTEXT": {},
+        "ITEM_EXISTING_CHAMBER": {},
+        "ITEM_EXISTING_POLE": {},
+        "ITEM_PROPOSED_LOCATION": {},
+        "POLE_BASE": {},
+        "POLE_CONTEXT": {},
+        "POLE_DP_TAG": {},
+        "POLE_DP_TAG_D_LABEL": {},
+        "POLE_TOP_ANGLE_1": {},
+        "POLE_TOP_ANGLE_2": {},
+        "POLE_TOP_ANGLE_3": {},
+        "POLE_TOP_ANGLE_4": {},
+        "PRE_WORK_DIG": {},
+        "REINSTATEMENT": {},
+        "REPAIR_INSTALLATION": {},
+        "RISK_ASSESSMENT": {},
+        "ROUTE_MAP": {},
+        "SIGNATURE": {
+            "hash_only": true
+        },
+        "SITE_OVERVIEW": {},
+        "SITE_SETUP": {},
+        "SITE_SHUTDOWN": {},
+        "STRUCTURE_CONTEXT": {},
+        "STRUCTURE_ENTRY": {},
+        "TM_BOARD": {},
+        "TRACK_SURFACE_CLOSEUP": {},
+        "TRACK_SURFACE_CONTEXT": {},
+        "TREE_CUTTING": {}
+    },
+    "a55a": {
+        "submission_level": [
+            {
+                "slot": "ROUTE_MAP",
+                "label": "Route map or OS plan image",
+                "max_images": 1,
+                "requirement": "optional"
+            },
+            {
+                "slot": "SITE_OVERVIEW",
+                "label": "General site context photo",
+                "max_images": 3,
+                "requirement": "optional"
+            },
+            {
+                "slot": "TM_BOARD",
+                "label": "Traffic management board",
+                "max_images": 3,
+                "requirement": "conditional",
+                "when": {
+                    "field": "notice.traffic_management",
+                    "op": "not_equals",
+                    "value": "none"
+                }
+            },
+            {
+                "slot": "TRACK_SURFACE_CLOSEUP",
+                "label": "Close-up of surface type along proposed new track route",
+                "max_images": 1,
+                "requirement": "conditional",
+                "when": {
+                    "field": "job_type",
+                    "op": "equals",
+                    "value": "new_track"
+                }
+            },
+            {
+                "slot": "TRACK_SURFACE_CONTEXT",
+                "label": "Wide shot of proposed new track route showing surface context",
+                "max_images": 1,
+                "requirement": "conditional",
+                "when": {
+                    "field": "job_type",
+                    "op": "equals",
+                    "value": "new_track"
+                }
+            }
+        ],
+        "point_slots": {
+            "start_point": {
+                "junction_box": {
+                    "blockage": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view — rod in duct visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "desilt": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view — rod in duct visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole_bend": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view — rod in duct visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_track": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_box": [
+                        {
+                            "slot": "CHAMBER_ROD_BORE",
+                            "label": "Rod in duct with sprayed bore mark visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "tree_cutting": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ]
+                },
+                "pole": {
+                    "blockage": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "desilt": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole_bend": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_track": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_box": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "tree_cutting": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ]
+                },
+                "structure": {
+                    "blockage": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "desilt": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole_bend": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_track": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_box": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "tree_cutting": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ]
+                }
+            },
+            "end_point": {
+                "junction_box": {
+                    "blockage": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view — rod in duct visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "desilt": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view — rod in duct visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole_bend": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view — rod in duct visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_track": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_box": [
+                        {
+                            "slot": "CHAMBER_ROD_BORE",
+                            "label": "Rod in duct with sprayed bore mark visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "tree_cutting": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ]
+                },
+                "pole": {
+                    "blockage": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "desilt": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole_bend": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_track": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_box": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "tree_cutting": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ]
+                },
+                "structure": {
+                    "blockage": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "desilt": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole_bend": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_track": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "new_box": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "tree_cutting": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 8,
+                            "requirement": "optional"
+                        }
+                    ]
+                }
+            },
+            "blockage_point": [
+                {
+                    "slot": "BLOCKAGE_MARKED",
+                    "label": "Marked blockage location — spray-painted X on surface",
+                    "max_images": 1,
+                    "requirement": "required"
+                },
+                {
+                    "slot": "BLOCKAGE_CONTEXT",
+                    "label": "Blockage location with friendly address",
+                    "max_images": 1,
+                    "requirement": "required"
+                },
+                {
+                    "slot": "ADDITIONAL_EVIDENCE",
+                    "label": "Additional evidence photos",
+                    "max_images": 4,
+                    "requirement": "optional"
+                }
+            ],
+            "item_point": {
+                "d_pole": [
+                    {
+                        "slot": "POLE_DP_TAG_D_LABEL",
+                        "label": "Pole ID tag with red D-label visible",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_1",
+                        "label": "Top of pole — angle 1",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_2",
+                        "label": "Top of pole — angle 2",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_3",
+                        "label": "Top of pole — angle 3",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_4",
+                        "label": "Top of pole — angle 4",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_BASE",
+                        "label": "Base of pole",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_CONTEXT",
+                        "label": "Pole with friendly address",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "pole_top_capacity": [
+                    {
+                        "slot": "POLE_DP_TAG",
+                        "label": "Pole ID tag (DP/CP number)",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_1",
+                        "label": "Top of pole — angle 1",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_2",
+                        "label": "Top of pole — angle 2",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_3",
+                        "label": "Top of pole — angle 3",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_TOP_ANGLE_4",
+                        "label": "Top of pole — angle 4",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_BASE",
+                        "label": "Base of pole",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "POLE_CONTEXT",
+                        "label": "Pole with friendly address",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "chamber_capacity": [
+                    {
+                        "slot": "CHAMBER_INTERNAL",
+                        "label": "Inside chamber view",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "CHAMBER_CONTEXT",
+                        "label": "Chamber with friendly address",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "CHAMBER_EQUIPMENT",
+                        "label": "Close-up of equipment inside chamber",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "gully_suck": [
+                    {
+                        "slot": "CHAMBER_INTERNAL",
+                        "label": "Inside chamber view",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "CHAMBER_CONTEXT",
+                        "label": "Chamber with friendly address",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "frame_cover_replacement": [
+                    {
+                        "slot": "CHAMBER_LID",
+                        "label": "Chamber lid/cover surface",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "CHAMBER_CONTEXT",
+                        "label": "Chamber with friendly address",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "CHAMBER_DAMAGE",
+                        "label": "Close-up of damage to frame or cover",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "new_box": [
+                    {
+                        "slot": "ITEM_PROPOSED_LOCATION",
+                        "label": "Proposed location for new asset",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ITEM_CONTEXT",
+                        "label": "Surrounding area — contextual wide shot",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ITEM_EXISTING_CHAMBER",
+                        "label": "Existing chamber at or near proposed location",
+                        "max_images": 1,
+                        "requirement": "optional"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "new_pole": [
+                    {
+                        "slot": "ITEM_PROPOSED_LOCATION",
+                        "label": "Proposed location for new asset",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ITEM_CONTEXT",
+                        "label": "Surrounding area — contextual wide shot",
+                        "max_images": 1,
+                        "requirement": "required"
+                    },
+                    {
+                        "slot": "ITEM_EXISTING_POLE",
+                        "label": "Existing pole ID at or near proposed location",
+                        "max_images": 1,
+                        "requirement": "optional"
+                    },
+                    {
+                        "slot": "ADDITIONAL_EVIDENCE",
+                        "label": "Additional evidence photos",
+                        "max_images": 4,
+                        "requirement": "optional"
+                    }
+                ],
+                "tree_cutting": {
+                    "junction_box": [
+                        {
+                            "slot": "CHAMBER_INTERNAL",
+                            "label": "Inside chamber view",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "CHAMBER_CONTEXT",
+                            "label": "Chamber with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 4,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "pole": [
+                        {
+                            "slot": "POLE_DP_TAG",
+                            "label": "Pole ID tag (DP/CP number)",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "POLE_CONTEXT",
+                            "label": "Pole with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 4,
+                            "requirement": "optional"
+                        }
+                    ],
+                    "structure": [
+                        {
+                            "slot": "STRUCTURE_ENTRY",
+                            "label": "Duct entry point — close-up",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "STRUCTURE_CONTEXT",
+                            "label": "Wide shot of building with friendly address",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "TREE_CUTTING",
+                            "label": "Required tree cutting — vegetation obstruction visible",
+                            "max_images": 1,
+                            "requirement": "required"
+                        },
+                        {
+                            "slot": "ADDITIONAL_EVIDENCE",
+                            "label": "Additional evidence photos",
+                            "max_images": 4,
+                            "requirement": "optional"
+                        }
+                    ]
+                }
+            },
+            "location_point": []
+        }
+    },
+    "a55b": {
+        "preliminary_checks": [
+            {
+                "slot": "ROUTE_MAP",
+                "label": "Route map or OS plan image",
+                "max_images": 1,
+                "requirement": "optional"
+            },
+            {
+                "slot": "RISK_ASSESSMENT",
+                "label": "Risk assessment documentation",
+                "max_images": 2,
+                "requirement": "required"
+            },
+            {
+                "slot": "HG47_MARKUP",
+                "label": "H&G47 markup documentation",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "SITE_SETUP",
+                "label": "Site setup photographs",
+                "max_images": 8,
+                "requirement": "required"
+            },
+            {
+                "slot": "TM_BOARD",
+                "label": "Traffic management board",
+                "max_images": 3,
+                "requirement": "conditional",
+                "when": {
+                    "field": "stage_details.traffic_management",
+                    "op": "not_equals",
+                    "value": "none"
+                }
+            },
+            {
+                "slot": "SITE_OVERVIEW",
+                "label": "General site context photo",
+                "max_images": 3,
+                "requirement": "optional"
+            },
+            {
+                "slot": "ADDITIONAL_EVIDENCE",
+                "label": "Additional evidence photos",
+                "max_images": 4,
+                "requirement": "optional"
+            }
+        ],
+        "repair_installation": [
+            {
+                "slot": "PRE_WORK_DIG",
+                "label": "Pre-work dig photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "EXCAVATION",
+                "label": "Excavation photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "REPAIR_INSTALLATION",
+                "label": "Repair and installation photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "BACK_FILL",
+                "label": "Back fill photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "ADDITIONAL_EVIDENCE",
+                "label": "Additional evidence photos",
+                "max_images": 4,
+                "requirement": "optional"
+            }
+        ],
+        "reinstatement": [
+            {
+                "slot": "REINSTATEMENT",
+                "label": "Reinstatement photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "COMPLETED_START",
+                "label": "Completed start point photographs",
+                "max_images": 2,
+                "requirement": "required"
+            },
+            {
+                "slot": "COMPLETED_END",
+                "label": "Completed end point photographs",
+                "max_images": 2,
+                "requirement": "required"
+            },
+            {
+                "slot": "SITE_SHUTDOWN",
+                "label": "Site shutdown photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "SIGNATURE",
+                "label": "Engineer signature",
+                "max_images": 1,
+                "requirement": "required"
+            },
+            {
+                "slot": "ADDITIONAL_EVIDENCE",
+                "label": "Additional evidence photos",
+                "max_images": 4,
+                "requirement": "optional"
+            }
+        ],
+        "close_off": [
+            {
+                "slot": "CLOSEOFF_REINSTATEMENT",
+                "label": "Close-off reinstatement photographs",
+                "max_images": 4,
+                "requirement": "required"
+            },
+            {
+                "slot": "CLOSEOFF_START",
+                "label": "Close-off start point photographs",
+                "max_images": 2,
+                "requirement": "required"
+            },
+            {
+                "slot": "CLOSEOFF_END",
+                "label": "Close-off end point photographs",
+                "max_images": 2,
+                "requirement": "required"
+            },
+            {
+                "slot": "CLOSEOFF_SIGNATURE",
+                "label": "Close-off engineer signature",
+                "max_images": 1,
+                "requirement": "required"
+            },
+            {
+                "slot": "ADDITIONAL_EVIDENCE",
+                "label": "Additional evidence photos",
+                "max_images": 4,
+                "requirement": "optional"
+            }
+        ]
+    }
+}

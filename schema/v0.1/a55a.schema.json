@@ -1,0 +1,1014 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://openpia.org/schema/v0.1/a55a.schema.json",
+    "title": "OpenPIA A55a — reactive works (point-based)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "submission_type",
+        "submission_uid",
+        "points",
+        "evidence_items"
+    ],
+    "properties": {
+        "submission_type": {
+            "const": "a55a",
+            "description": "The notice type this submission represents (a55a — reactive works)."
+        },
+        "submission_uid": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The origin identity of this submission — a UUID minted by the authoring system and carried unchanged by any receiver."
+        },
+        "schema_code": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "pattern": "^openpia_[a-z0-9]+_v[0-9]+\\.[0-9]+$",
+            "description": "The OpenPIA schema and version this submission is built against, for example openpia_a55a_v0.1."
+        },
+        "external_ref": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "Partner's external job reference"
+        },
+        "pia_noi_reference": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "maxLength": 255,
+            "description": "The PIA notice-of-intent reference for the works."
+        },
+        "job_type": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/jobType"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "A55a canonical job types"
+        },
+        "location": {
+            "$ref": "#/$defs/location"
+        },
+        "notice": {
+            "$ref": "#/$defs/notice"
+        },
+        "works_details": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "route_length_m": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The length of the works route in metres. Applies to blockage, desilt, pole_bend, new_box, new_track and tree_cutting."
+                },
+                "blockage_span_m": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The span of the blockage in metres. Applies to blockage and pole_bend."
+                },
+                "existing_cable_count": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The number of existing cables present. Applies to blockage, desilt, pole_bend and new_box."
+                },
+                "capacity_utilization_percent": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/capacityUtilizationPercent"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "How full the existing infrastructure is, as a quarter-band. Applies to blockage, desilt, pole_bend and new_box."
+                },
+                "duct_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "A reference identifying the duct. Applies to blockage, desilt, pole_bend, new_box and new_track."
+                },
+                "new_cable_specification": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The specification of the new cable to be installed. Applies to desilt, new_box and new_track."
+                },
+                "rods_25mm_used": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether 25mm rods were used. Applies to blockage, desilt, pole_bend, new_track and new_box."
+                },
+                "dropwire_count": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "The number of dropwires. Applies to d_pole and pole_top_capacity."
+                }
+            },
+            "description": "Job-type-specific detail fields for the works — such as route length, cable counts, duct reference, and capacity. Which fields apply depends on the job type."
+        },
+        "points": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/point"
+            },
+            "description": "The works locations within the submission."
+        },
+        "routes": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "minItems": 0,
+            "items": {
+                "$ref": "#/$defs/route"
+            },
+            "description": "Route polylines for the works. Optional; when present, each entry's index fields are required. Ordered after points and before surfaces."
+        },
+        "surfaces": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "minItems": 0,
+            "items": {
+                "$ref": "#/$defs/surface"
+            },
+            "description": "Surface spans along the routes. Optional; each surface references a route by route_index. surface_index is unique across the array."
+        },
+        "evidence_items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/evidenceItem"
+            },
+            "description": "The items of evidence submitted with the notice."
+        }
+    },
+    "$defs": {
+        "jobType": {
+            "type": "string",
+            "enum": [
+                "blockage",
+                "desilt",
+                "pole_bend",
+                "new_track",
+                "new_box",
+                "tree_cutting",
+                "chamber_capacity",
+                "pole_top_capacity",
+                "d_pole",
+                "frame_cover_replacement",
+                "gully_suck",
+                "traffic_management",
+                "new_pole"
+            ],
+            "description": "A55a canonical job types"
+        },
+        "pointType": {
+            "type": "string",
+            "enum": [
+                "start_point",
+                "end_point",
+                "item_point",
+                "blockage_point",
+                "location_point"
+            ],
+            "description": "The role a point plays in the works — for example the start or end of a route, an item location, or a blockage point."
+        },
+        "infrastructureCategory": {
+            "type": "string",
+            "enum": [
+                "junction_box",
+                "jointing_chamber",
+                "pole",
+                "structure",
+                "chamber_non_standard"
+            ],
+            "description": "The broad class of infrastructure asset a point sits on, grouping the specific infrastructure types beneath it."
+        },
+        "infrastructureType": {
+            "type": "string",
+            "enum": [
+                "jb21",
+                "jb22",
+                "jb23",
+                "jb26",
+                "jf2",
+                "jf4",
+                "jf5",
+                "jf6",
+                "jf10",
+                "jf11",
+                "cw1",
+                "cw2",
+                "cw3",
+                "jbf104",
+                "jbf106",
+                "jbc2",
+                "jbc3",
+                "jbc4",
+                "chamber_non_standard",
+                "pole_wood",
+                "pole_steel",
+                "pole_fibreglass",
+                "pole_joint_user",
+                "building"
+            ],
+            "description": "The specific infrastructure asset at a point; each type maps to one category (see infrastructure-map.json)."
+        },
+        "trafficManagement": {
+            "type": "string",
+            "enum": [
+                "none",
+                "two_way_lights",
+                "three_way_lights",
+                "four_way_lights",
+                "lane_closure",
+                "road_closure",
+                "stop_go_boards",
+                "survey_required",
+                "t_o15"
+            ],
+            "description": "The traffic management arrangement in place at the site, ranging from none through the various signalled and closure options."
+        },
+        "surfaceType": {
+            "type": "string",
+            "enum": [
+                "carriageway",
+                "concrete",
+                "footway",
+                "slabs",
+                "soft",
+                "tarmac"
+            ],
+            "description": "The type of ground surface along a route span, such as carriageway, footway, or a soft surface."
+        },
+        "capacityUtilizationPercent": {
+            "type": "string",
+            "enum": [
+                "0-25",
+                "25-50",
+                "50-75",
+                "75-100"
+            ],
+            "description": "How full the existing infrastructure is, expressed as a quarter-band from 0–25% up to 75–100%."
+        },
+        "blockageDiscoveryMethod": {
+            "type": "string",
+            "enum": [
+                "not_assessed",
+                "rods"
+            ],
+            "description": "How a blockage was established — either not assessed, or confirmed by rodding."
+        },
+        "evidenceType": {
+            "type": "string",
+            "enum": [
+                "photo",
+                "video"
+            ],
+            "description": "The kind of file an evidence item carries. This notice accepts photographs and video."
+        },
+        "slotCode": {
+            "type": "string",
+            "enum": [
+                "ADDITIONAL_EVIDENCE",
+                "BACK_FILL",
+                "BLOCKAGE_CONTEXT",
+                "BLOCKAGE_MARKED",
+                "CHAMBER_CONTEXT",
+                "CHAMBER_DAMAGE",
+                "CHAMBER_EQUIPMENT",
+                "CHAMBER_INTERNAL",
+                "CHAMBER_LID",
+                "CHAMBER_ROD_BORE",
+                "CLOSEOFF_END",
+                "CLOSEOFF_REINSTATEMENT",
+                "CLOSEOFF_SIGNATURE",
+                "CLOSEOFF_START",
+                "COMPLETED_END",
+                "COMPLETED_START",
+                "EXCAVATION",
+                "HG47_MARKUP",
+                "ITEM_CONTEXT",
+                "ITEM_EXISTING_CHAMBER",
+                "ITEM_EXISTING_POLE",
+                "ITEM_PROPOSED_LOCATION",
+                "POLE_BASE",
+                "POLE_CONTEXT",
+                "POLE_DP_TAG",
+                "POLE_DP_TAG_D_LABEL",
+                "POLE_TOP_ANGLE_1",
+                "POLE_TOP_ANGLE_2",
+                "POLE_TOP_ANGLE_3",
+                "POLE_TOP_ANGLE_4",
+                "PRE_WORK_DIG",
+                "REINSTATEMENT",
+                "REPAIR_INSTALLATION",
+                "RISK_ASSESSMENT",
+                "ROUTE_MAP",
+                "SIGNATURE",
+                "SITE_OVERVIEW",
+                "SITE_SETUP",
+                "SITE_SHUTDOWN",
+                "STRUCTURE_CONTEXT",
+                "STRUCTURE_ENTRY",
+                "TM_BOARD",
+                "TRACK_SURFACE_CLOSEUP",
+                "TRACK_SURFACE_CONTEXT",
+                "TREE_CUTTING"
+            ],
+            "description": "The evidence slot an item is assigned to — the specific required or optional view within the notice's evidence taxonomy."
+        },
+        "fileHash": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$",
+            "description": "The SHA-256 hash of the evidence file, as 64 hexadecimal characters."
+        },
+        "latitude": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": -90,
+            "maximum": 90,
+            "description": "Latitude in decimal degrees (WGS84)."
+        },
+        "longitude": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": -180,
+            "maximum": 180,
+            "description": "Longitude in decimal degrees (WGS84)."
+        },
+        "easting": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "maximum": 700000,
+            "description": "Easting in metres on the British National Grid (OSGB36)."
+        },
+        "northing": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "minimum": 0,
+            "maximum": 1300000,
+            "description": "Northing in metres on the British National Grid (OSGB36)."
+        },
+        "coordinates": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "lat": {
+                    "$ref": "#/$defs/latitude"
+                },
+                "lng": {
+                    "$ref": "#/$defs/longitude"
+                },
+                "easting": {
+                    "$ref": "#/$defs/easting"
+                },
+                "northing": {
+                    "$ref": "#/$defs/northing"
+                }
+            },
+            "description": "A position given as latitude/longitude and/or British National Grid easting/northing."
+        },
+        "location": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "A free-text description of the location."
+                },
+                "postcode": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 8,
+                    "description": "The postcode of the location."
+                },
+                "what3words": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The what3words address identifying the location."
+                },
+                "usrn": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "pattern": "^[0-9]{1,12}$",
+                    "description": "The Unique Street Reference Number (USRN) for the street."
+                },
+                "coordinates": {
+                    "$ref": "#/$defs/coordinates"
+                }
+            },
+            "description": "Where the works take place, given as any of a free-text description, postcode, USRN, what3words address, or coordinates."
+        },
+        "siteDetails": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "parking_bays": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether parking bays are affected by or relevant to the works."
+                },
+                "pedestrian_crossing": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether a pedestrian crossing is affected by or relevant to the works."
+                },
+                "private_access": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether the site involves private access."
+                },
+                "out_of_hours_traffic_management": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ],
+                    "description": "Whether traffic management is required outside normal working hours."
+                }
+            },
+            "description": "Site conditions relevant to traffic management"
+        },
+        "supplementaryItem": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "item_index",
+                "value"
+            ],
+            "properties": {
+                "item_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The 0-based index of this supplementary item, referenced by evidence items."
+                },
+                "field_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Schema-defined identifier for the supplementary field"
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Human-readable label for the supplementary item"
+                },
+                "value": {
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "maxLength": 5000
+                        },
+                        {
+                            "type": "number"
+                        },
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The answer value (boolean, string, number, etc.)"
+                },
+                "notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Free-text notes for the supplementary item."
+                }
+            },
+            "description": "A partner-defined additional data item carried on the notice, identified by index, with an optional label and value."
+        },
+        "duct": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "x_grid",
+                "y_grid",
+                "duct_blocked"
+            ],
+            "properties": {
+                "x_grid": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Horizontal position in chamber cross-section grid"
+                },
+                "y_grid": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Vertical position in chamber cross-section grid"
+                },
+                "duct_blocked": {
+                    "type": "boolean",
+                    "description": "Whether this duct position is blocked"
+                }
+            },
+            "description": "A single duct position in a chamber's cross-section grid, and whether that position is blocked."
+        },
+        "routeLatitude": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": 48,
+            "maximum": 62,
+            "description": "Latitude of a route vertex in decimal degrees (WGS84)."
+        },
+        "routeLongitude": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": -10,
+            "maximum": 4,
+            "description": "Longitude of a route vertex in decimal degrees (WGS84)."
+        },
+        "route": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "route_index"
+            ],
+            "properties": {
+                "route_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Unique index of this route within the submission"
+                },
+                "route_points": {
+                    "type": [
+                        "array",
+                        "null"
+                    ],
+                    "minItems": 0,
+                    "items": {
+                        "$ref": "#/$defs/routePoint"
+                    },
+                    "description": "Ordered vertices of the route polyline"
+                }
+            },
+            "description": "A route polyline for the works, identified by a unique index and carrying its ordered vertices."
+        },
+        "routePoint": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "route_point_index"
+            ],
+            "properties": {
+                "route_point_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Sequential index of this vertex within its route, starting from zero"
+                },
+                "lat": {
+                    "$ref": "#/$defs/routeLatitude"
+                },
+                "lng": {
+                    "$ref": "#/$defs/routeLongitude"
+                },
+                "easting": {
+                    "$ref": "#/$defs/easting"
+                },
+                "northing": {
+                    "$ref": "#/$defs/northing"
+                }
+            },
+            "description": "A single vertex of a route polyline, placed on the National Grid."
+        },
+        "surface": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "surface_index",
+                "route_index"
+            ],
+            "properties": {
+                "surface_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Unique index of this surface across the surfaces array"
+                },
+                "route_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The route_index of the Route this surface spans"
+                },
+                "surface_data": {
+                    "type": [
+                        "object",
+                        "null"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "surface_type": {
+                            "type": [
+                                "array",
+                                "null"
+                            ],
+                            "minItems": 0,
+                            "uniqueItems": true,
+                            "items": {
+                                "$ref": "#/$defs/surfaceType"
+                            },
+                            "description": "Surface types along this route span"
+                        },
+                        "length_m": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0,
+                            "description": "Length of this surface span in metres"
+                        }
+                    },
+                    "description": "The surface makeup of this span — its surface types and length."
+                }
+            },
+            "description": "A surface span along a route, referencing the route it covers by route_index."
+        },
+        "notice": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "contractor_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The name of the contractor organisation carrying out the works."
+                },
+                "contractor_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The identifier for the contractor organisation."
+                },
+                "engineer_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Engineer's display name"
+                },
+                "engineer_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The identifier for the engineer on site."
+                },
+                "works_date": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date",
+                    "description": "The date the works were carried out."
+                },
+                "whereabouts_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The identifier of the associated whereabouts record."
+                },
+                "openreach_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "The Openreach reference for the works."
+                },
+                "service_provider_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Communications provider display name"
+                },
+                "service_provider_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Communications provider code"
+                },
+                "exchange_name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Openreach exchange name"
+                },
+                "exchange_code": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 255,
+                    "description": "Openreach exchange code"
+                },
+                "traffic_management": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/trafficManagement"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The traffic management arrangement in place at the site."
+                },
+                "site_details": {
+                    "$ref": "#/$defs/siteDetails"
+                },
+                "supplementary_items": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/supplementaryItem"
+                    },
+                    "description": "Partner-defined additional data items carried on the notice."
+                }
+            },
+            "description": "Contextual details for the works notice: contractor and engineer identity, the works date, the communications provider and Openreach exchange, traffic management, site conditions, and any supplementary items."
+        },
+        "point": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "point_type",
+                "point_index"
+            ],
+            "properties": {
+                "point_type": {
+                    "$ref": "#/$defs/pointType"
+                },
+                "point_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "The 0-based index of this point within the submission, referenced by evidence items."
+                },
+                "lat": {
+                    "$ref": "#/$defs/latitude"
+                },
+                "lng": {
+                    "$ref": "#/$defs/longitude"
+                },
+                "easting": {
+                    "$ref": "#/$defs/easting"
+                },
+                "northing": {
+                    "$ref": "#/$defs/northing"
+                },
+                "infrastructure_category": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/infrastructureCategory"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The broad class of infrastructure asset this point sits on."
+                },
+                "infrastructure_type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/infrastructureType"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The specific infrastructure asset at this point."
+                },
+                "notes": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "maxLength": 5000,
+                    "description": "Free-text engineer observations"
+                },
+                "point_data": {
+                    "type": [
+                        "object",
+                        "null"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "distribution_point_number": {
+                            "type": [
+                                "string",
+                                "null"
+                            ],
+                            "maxLength": 50,
+                            "description": "DP number for the infrastructure asset"
+                        },
+                        "ducts": {
+                            "type": [
+                                "array",
+                                "null"
+                            ],
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "#/$defs/duct"
+                            },
+                            "description": "Duct cross-section grid positions and blocked status"
+                        },
+                        "blockage_discovery_method": {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/$defs/blockageDiscoveryMethod"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "How the blockage was discovered (blockage/pole_bend jobs)"
+                        },
+                        "length_to_item_m": {
+                            "type": [
+                                "number",
+                                "null"
+                            ],
+                            "minimum": 0,
+                            "description": "Distance in metres from the point to the item of interest"
+                        }
+                    },
+                    "description": "Point-specific data that varies by infrastructure type and job — such as duct positions, the blockage discovery method, or a distribution point number."
+                }
+            },
+            "description": "A works location within the submission: its type and position, coordinates, the infrastructure asset it sits on, and any point-specific data such as duct positions."
+        },
+        "evidenceItem": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "slot_code",
+                "file_hash",
+                "evidence_type"
+            ],
+            "not": {
+                "required": [
+                    "point_index",
+                    "item_index"
+                ],
+                "properties": {
+                    "point_index": {
+                        "type": "integer"
+                    },
+                    "item_index": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "properties": {
+                "point_index": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "Must match a `points[].point_index` value. Mutually exclusive with `item_index`."
+                },
+                "item_index": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "description": "0-based index into `notice.supplementary_items`. Mutually exclusive with `point_index`. Max 4 images per item."
+                },
+                "slot_code": {
+                    "$ref": "#/$defs/slotCode"
+                },
+                "file_url": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "uri-reference",
+                    "maxLength": 2048,
+                    "description": "A package-relative path or absolute URL to the evidence file; omitted for hash-only slots."
+                },
+                "file_hash": {
+                    "$ref": "#/$defs/fileHash"
+                },
+                "evidence_type": {
+                    "$ref": "#/$defs/evidenceType"
+                },
+                "captured_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time",
+                    "description": "When the evidence was captured (EXIF or device timestamp)"
+                },
+                "captured_lat": {
+                    "$ref": "#/$defs/latitude"
+                },
+                "captured_lng": {
+                    "$ref": "#/$defs/longitude"
+                },
+                "captured_easting": {
+                    "$ref": "#/$defs/easting"
+                },
+                "captured_northing": {
+                    "$ref": "#/$defs/northing"
+                }
+            },
+            "description": "A single item of evidence: its assigned slot, file reference and SHA-256 hash, type, and capture details. Linked to a point or a supplementary item by index."
+        }
+    }
+}

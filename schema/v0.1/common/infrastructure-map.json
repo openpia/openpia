@@ -1,0 +1,36 @@
+{
+    "$id": "https://openpia.org/schema/v0.1/common/infrastructure-map.json",
+    "title": "OpenPIA infrastructure type → category map (A55)",
+    "version": "0.1",
+    "description": "A mapping from each infrastructure type to its broad category, with the slot-set aliases used to resolve evidence requirements.",
+    "type_to_category": {
+        "jb21": "junction_box",
+        "jb22": "junction_box",
+        "jb23": "junction_box",
+        "jb26": "junction_box",
+        "jf2": "junction_box",
+        "jf4": "junction_box",
+        "jf5": "junction_box",
+        "jf6": "junction_box",
+        "jf10": "junction_box",
+        "jf11": "junction_box",
+        "cw1": "junction_box",
+        "cw2": "junction_box",
+        "cw3": "junction_box",
+        "jbf104": "jointing_chamber",
+        "jbf106": "jointing_chamber",
+        "jbc2": "jointing_chamber",
+        "jbc3": "jointing_chamber",
+        "jbc4": "jointing_chamber",
+        "chamber_non_standard": "chamber_non_standard",
+        "pole_wood": "pole",
+        "pole_steel": "pole",
+        "pole_fibreglass": "pole",
+        "pole_joint_user": "pole",
+        "building": "structure"
+    },
+    "slot_set_aliases": {
+        "jointing_chamber": "junction_box",
+        "chamber_non_standard": "junction_box"
+    }
+}

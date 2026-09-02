@@ -1,0 +1,51 @@
+OpenPIA — Licensing
+===================
+
+OpenPIA is licensed for maximum adoption with minimum friction. Different
+artifact types carry different licences; project *coherence* is carried
+separately, by trademark — not by the copyright licence.
+
+What applies to what
+--------------------
+
+  Schema files & data model (schema/)             Apache License 2.0
+  Reference implementations & tooling             Apache License 2.0
+  Specification & documentation (spec/, docs/)    CC BY 4.0
+  Name "OpenPIA", logo, "OpenPIA-conformant"      Trademark + conformance
+                                                  policy (not a copyright licence)
+
+Apache-2.0 covers the schema and code because it is permissive and includes an
+explicit, royalty-free *patent grant* — important protection for an interchange
+standard. CC BY 4.0 covers the prose so it can be reproduced, translated and
+quoted freely, with attribution. You may use, copy, implement and build on all
+of it, including in closed-source and commercial products, at no cost.
+
+Full licence texts:
+  Apache-2.0   see LICENSE-APACHE-2.0   (canonical: https://www.apache.org/licenses/LICENSE-2.0)
+  CC BY 4.0    see LICENSE-CC-BY-4.0    (canonical: https://creativecommons.org/licenses/by/4.0/legalcode)
+
+Coherence — the name, not the licence
+-------------------------------------
+
+The schema and docs are free to fork, copy, translate and extend. What is
+protected is the *name*: "OpenPIA", the logo, and the claim "OpenPIA-conformant".
+A fork may do anything it likes with the schema, but may not present itself as
+OpenPIA, or claim OpenPIA conformance, unless it conforms to the canonical
+version. This keeps adoption frictionless while ensuring "OpenPIA" continues to
+mean one specific, interoperable thing. See CHARTER.md and GOVERNANCE.md.
+
+Copyright
+---------
+
+Copyright (c) the OpenPIA contributors.
+"OpenPIA" is a trademark of the OpenPIA project, intended to be held in trust
+for the future industry steward.
+
+Still to action (these do not restrict use today)
+-------------------------------------------------
+
+  - Register the trademark and publish a short usage/conformance policy.
+  - Confirm the trademark and patent posture with an IP professional
+    (this file is direction, not legal advice).
+
+SPDX-License-Identifier: Apache-2.0 AND CC-BY-4.0

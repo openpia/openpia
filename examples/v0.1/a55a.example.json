@@ -1,0 +1,123 @@
+{
+  "submission_type": "a55a",
+  "submission_uid": "a55a0001-0000-4000-8000-000000000001",
+  "schema_code": "openpia_a55a_v0.1",
+  "external_ref": "JOB-2026-00451",
+  "pia_noi_reference": "NOI-123456",
+  "job_type": "new_track",
+  "location": {
+    "description": "Junction of Oak Lane and Elm Street",
+    "postcode": "AB1 2CD",
+    "what3words": "example.words.here",
+    "coordinates": {
+      "lat": 51.5014,
+      "lng": -0.1419,
+      "easting": 529090,
+      "northing": 179645
+    }
+  },
+  "notice": {
+    "contractor_name": "Example Civils Ltd",
+    "contractor_id": "12",
+    "engineer_name": "A. Engineer",
+    "engineer_id": "7555",
+    "works_date": "2026-03-07",
+    "service_provider_name": "BT Openreach",
+    "service_provider_code": "bt-openreach",
+    "exchange_name": "Example Exchange",
+    "exchange_code": "example-exchange",
+    "traffic_management": "none",
+    "site_details": {
+      "parking_bays": false,
+      "pedestrian_crossing": false,
+      "private_access": false,
+      "out_of_hours_traffic_management": false
+    },
+    "supplementary_items": [
+      {
+        "item_index": 0,
+        "label": "Any other relevant information?",
+        "value": false,
+        "notes": null
+      }
+    ]
+  },
+  "works_details": {
+    "route_length_m": 25,
+    "blockage_span_m": 0,
+    "duct_reference": "25m nd",
+    "rods_25mm_used": true
+  },
+  "points": [
+    {
+      "point_type": "start_point",
+      "point_index": 0,
+      "lat": 51.5014,
+      "lng": -0.1419,
+      "easting": 529090,
+      "northing": 179645,
+      "infrastructure_category": "junction_box",
+      "infrastructure_type": "jb23"
+    },
+    {
+      "point_type": "end_point",
+      "point_index": 1,
+      "lat": 51.5016,
+      "lng": -0.1421,
+      "infrastructure_category": "junction_box",
+      "infrastructure_type": "jb23"
+    }
+  ],
+  "routes": [
+    {
+      "route_index": 0,
+      "route_points": [
+        {
+          "route_point_index": 0,
+          "lat": 51.5014,
+          "lng": -0.1419,
+          "easting": 529090,
+          "northing": 179645
+        },
+        {
+          "route_point_index": 1,
+          "lat": 51.5016,
+          "lng": -0.1421,
+          "easting": 529077,
+          "northing": 179667
+        }
+      ]
+    }
+  ],
+  "surfaces": [
+    {
+      "surface_index": 0,
+      "route_index": 0,
+      "surface_data": {
+        "surface_type": [
+          "soft"
+        ],
+        "length_m": 25
+      }
+    }
+  ],
+  "evidence_items": [
+    {
+      "point_index": 0,
+      "slot_code": "CHAMBER_INTERNAL",
+      "evidence_type": "photo",
+      "file_url": "evidence/media-1.jpg",
+      "file_hash": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+      "captured_at": "2026-03-07T06:21:00Z",
+      "captured_lat": 51.5014,
+      "captured_lng": -0.1419
+    },
+    {
+      "point_index": 1,
+      "slot_code": "CHAMBER_CONTEXT",
+      "evidence_type": "photo",
+      "file_url": "evidence/media-2.jpg",
+      "file_hash": "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3"
+    }
+  ]
+}

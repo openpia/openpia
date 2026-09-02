@@ -1,0 +1,33 @@
+name: validate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  schema-and-examples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pinned Python for the two standard-library-only checks.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # uv provisions jsonschema for validate_examples.py from its PEP 723 header,
+      # so CI and a local run use exactly the same mechanism.
+      - uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
+          cache-dependency-glob: tools/requirements.txt
+
+      - name: Validate schemas and examples
+        run: uv run tools/validate_examples.py
+
+      - name: Check the slotCode enum matches the evidence registry
+        run: python3 tools/sync_slot_codes.py --check
+
+      - name: Check field completeness (type + description + constraint)
+        run: python3 tools/check_field_completeness.py
