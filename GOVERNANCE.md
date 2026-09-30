@@ -6,7 +6,7 @@ OpenPIA is developed in the open. This document describes how the standard is bu
 
 OpenPIA is **practitioner-led**. The schema is shaped by the people who live the work — **build partners, altnets, and the software / GIS vendors who serve them**, together with the field-QA practitioners who know what evidence a submission really needs.
 
-Input comes primarily from **direct engagement** with those practitioners: detailed conversations and review of a draft against real A55a / A55b submissions. Once the project is public, it also comes from **open discussion on GitHub issues and pull requests**. A data model is defined through worked examples and precise discussion, not tick-box surveys — so direct engagement, not forms, is the mechanism.
+Input comes primarily from **direct engagement** with those practitioners: detailed conversations and review of a draft against real A55a / A55b submissions. Until v1.0 it also comes by email to [feedback@openpia.org](mailto:feedback@openpia.org); from v1.0, from **open discussion on GitHub issues and pull requests**. A data model is defined through worked examples and precise discussion, not tick-box surveys — so direct engagement, not forms, is the mechanism.
 
 The rhythm is ordinary open-source development applied to a data standard: **ship a draft, gather input, iterate, and credit the people whose input shaped it.** Each change is grounded in real operational reality, then written down precisely so the whole chain can point at the same definition of "done."
 
@@ -17,7 +17,7 @@ _(We may run occasional structured input drives if and when a broad contributor 
 Three channels, so contributors always know where to put what — and no decision is ever truly locked:
 
 - **Direct practitioner engagement** — the primary channel. Detailed input from build partners, altnets, vendors, and field-QA leads, reviewed against real submissions.
-- **Standing channel — GitHub issues & pull requests** — the permanent, open way to propose a change, raise something out of scope, or challenge a past decision, always against the live schema. Open to anyone, always.
+- **Standing channel** — the permanent way to propose a change, raise something out of scope, or challenge a past decision, always against the live schema. Open to anyone: pre-1.0 by email to [feedback@openpia.org](mailto:feedback@openpia.org) (invited reviewers also use GitHub issues); from v1.0, public GitHub issues & pull requests.
 - **Versioned decisions, open to challenge** — a decision lives on in the versioned schema, which is never truly locked. If real-world use shows a decision was wrong, the standing channel is how it gets reopened — with evidence.
 
 ## Versioning
@@ -32,7 +32,7 @@ The schema uses **semantic versioning** (`MAJOR.MINOR.PATCH`):
 
 ## Decision-making
 
-- Proposals and changes are discussed **in the open**, on issues and pull requests.
+- Proposals and changes are discussed **in the open**, on issues and pull requests (pre-1.0: issues opened by invited reviewers, with emailed input summarised there or in the changelog).
 - A change is accepted when there is rough consensus among active contributors and no unresolved substantive objection.
 - Maintainers are responsible for triage, keeping the record honest (what changed and why), and cutting versioned releases. Maintainers steward the process; they do not own the standard.
 
@@ -57,6 +57,6 @@ Most disagreements resolve in open discussion. The ones that don't need a define
 
 ## Roles
 
-- **Contributors** — anyone who helps shape the standard: taking part in a practitioner review or conversation, opening an issue, or submitting a pull request.
+- **Contributors** — anyone who helps shape the standard: taking part in a practitioner review or conversation, sending feedback by email, opening an issue, or submitting a pull request.
 - **Maintainers** — steward triage, versioning, and the record.
 - **Working group** — as the project matures, standing review is intended to move into an industry body's PIA / standards working group so the standard is owned collectively rather than by any single party.

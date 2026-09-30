@@ -31,8 +31,7 @@ Please use the security channel below — rather than a public report — for:
   `file_hash` content-addressing approach).
 
 General spec questions, field-definition debates, and ratification feedback are
-**not** security issues and will be handled through the normal contribution
-process once it opens.
+**not** security issues — send those to feedback@openpia.org (see `CONTRIBUTING.md`).
 
 ## Reporting a vulnerability
 

@@ -8,6 +8,19 @@ All notable changes to OpenPIA are recorded here.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-30
+
+### Added
+
+- **Infrastructure icon library** (`assets/icons/`) — 30 schematic SVG icons for field identification: footway/joint-box covers, carriageway covers, chamber openings, poles and common endpoints. All drawn at a common 104-unit height with filled paths only, so they can be inlined together. Artwork is CC BY 4.0.
+- **Icon index** (`assets/icons/icons.json`) — maps every infrastructure-map type code to its icon file (snake_case codes → kebab-case files), plus `extras` for icon-only codes (`jbf102`, `cw4`, the `jmf104`/`jmf106` aliases, generic endpoints).
+- **`tools/check_icons.py`** — CI check that every schema infrastructure type has an icon, every referenced file exists, no SVG is orphaned, and every icon is 104 units high.
+
+### Changed
+
+- **Feedback route pre-1.0** — public GitHub issues and pull requests open at v1.0. Until then feedback is by email to `feedback@openpia.org` or by joining a review (invited reviewers can open issues). `README.md`, `CONTRIBUTING.md`, `GOVERNANCE.md`, `SECURITY.md` and the icon README updated to match; stale note about the licence-text files removed from `README.md`.
+- **Working-draft wording** — `README.md` and `CONTRIBUTING.md` describe OpenPIA as a working draft of a proposed standard rather than an agreed one, in line with its pre-1.0 status.
+
 ## [0.1.0] - 2026-09-02
 
 First public release. OpenPIA is a vendor-neutral schema, specification and evidence taxonomy for UK Openreach A55 physical-infrastructure-access submissions. Scope for v0.1: UK Openreach A55 only, with **A55a (point-based)** prioritised ahead of **A55b (stage-based)**. Everything below is pre-1.0 and subject to change; several field meanings are flagged for practitioner ratification.

@@ -31,3 +31,6 @@ jobs:
 
       - name: Check field completeness (type + description + constraint)
         run: python3 tools/check_field_completeness.py
+
+      - name: Check every infrastructure type has an icon
+        run: python3 tools/check_icons.py

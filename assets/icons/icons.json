@@ -1,0 +1,43 @@
+{
+  "$comment": "Maps OpenPIA data codes to icon files. Codes use the schema's snake_case; files use kebab-case. Checked in CI by tools/check_icons.py.",
+  "title": "OpenPIA infrastructure icon index",
+  "height": 104,
+  "types": {
+    "jb21": "jb21.svg",
+    "jb22": "jb22.svg",
+    "jb23": "jb23.svg",
+    "jb26": "jb26.svg",
+    "jf2": "jf2.svg",
+    "jf4": "jf4.svg",
+    "jf5": "jf5.svg",
+    "jf6": "jf6.svg",
+    "jf10": "jf10.svg",
+    "jf11": "jf11.svg",
+    "cw1": "cw1.svg",
+    "cw2": "cw2.svg",
+    "cw3": "cw3.svg",
+    "jbf104": "jbf104.svg",
+    "jbf106": "jbf106.svg",
+    "jbc2": "jbc2.svg",
+    "jbc3": "jbc3.svg",
+    "jbc4": "jbc4.svg",
+    "chamber_non_standard": "cover-unknown.svg",
+    "pole_wood": "pole-wood.svg",
+    "pole_steel": "pole-steel.svg",
+    "pole_fibreglass": "pole-fibreglass.svg",
+    "pole_joint_user": "pole-joint-user.svg",
+    "building": "building.svg"
+  },
+  "extras": {
+    "$comment": "Icons for codes not (yet) in schema/v0.1/common/infrastructure-map.json.",
+    "jbf102": "jbf102.svg",
+    "jmf104": "jbf104.svg",
+    "jmf106": "jbf106.svg",
+    "cw4": "cw4.svg",
+    "pole_unknown": "pole-unknown.svg",
+    "manhole": "manhole.svg",
+    "toby": "toby.svg",
+    "cabinet": "cabinet.svg",
+    "cover_unknown": "cover-unknown.svg"
+  }
+}
