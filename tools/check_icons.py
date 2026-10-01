@@ -5,7 +5,8 @@
   assets/icons/icons.json "types" (and "types" holds nothing else);
 - every file icons.json names exists;
 - every SVG in assets/icons/ is referenced by icons.json;
-- every SVG is 104 units high (viewBox "0 0 W 104").
+- every SVG is 104 units high (viewBox "0 0 W 104"), with width/height
+  attributes matching the viewBox so it renders at its native size.
 
 Standard library only. Exit 1 on any problem.
 """
@@ -46,6 +47,10 @@ def main() -> int:
         m = re.search(r'viewBox="0 0 [\d.]+ ([\d.]+)"', (ICONS / name).read_text())
         if not m or float(m.group(1)) != height:
             errors.append(f"'{name}' viewBox height is not {height}")
+        svg = (ICONS / name).read_text()
+        vb = re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', svg)
+        if vb and not (re.search(rf'<svg[^>]*\swidth="{vb[1]}"', svg) and re.search(rf'<svg[^>]*\sheight="{vb[2]}"', svg)):
+            errors.append(f"'{name}' width/height attributes must match viewBox {vb[1]} x {vb[2]}")
 
     for e in errors:
         print(f"FAIL  {e}")
