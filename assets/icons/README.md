@@ -85,14 +85,14 @@ JMF104 and JMF106 share their JBF counterparts' opening geometry, so there are n
 - **`types`** has an entry for every infrastructure type in [`schema/v0.1/common/infrastructure-map.json`](../../schema/v0.1/common/infrastructure-map.json), e.g. `"pole_wood": "pole-wood.svg"`, `"chamber_non_standard": "cover-unknown.svg"`.
 - **`extras`** covers codes that are not (yet) schema types: `jbf102`, `cw4`, the `jmf104`/`jmf106` aliases, and the generic endpoints (`manhole`, `toby`, `cabinet`, `pole_unknown`, `cover_unknown`).
 
-CI (`tools/check_icons.py`) fails if a schema type has no icon, a referenced file is missing, or an SVG is not 104 units high.
+CI (`tools/check_icons.py`) fails if a schema type has no icon, `types` lists a code that is not a schema type, a referenced file is missing, an SVG is not referenced, or an SVG is not 104 units high with matching `width` and `height`.
 
 ## Using the icons
 
-- **Display every icon at the same height** (for example `height: 32px`) and let the width follow. Each file is 104 units high, so relative sizes are preserved.
-  - Icons within a family (JF, carriageway, chambers) are drawn to a shared scale.
-  - The small footway covers (JB21–JB26, JF2) share a smaller, true-proportion scale.
-- Each file has a `viewBox="0 0 W 104"`, with 4 units of padding around the shape and no fixed `width` or `height`.
+- **Display every icon at the same height** (for example `height: 32px`) and let the width follow. Every file is 104 units high, so this keeps each icon's proportions and line weights consistent.
+  - The chamber symbols (JBF, JBC) share one scale, so their sizes compare directly. The small footway covers (JB21–JB26, JF2) share another.
+  - The larger covers (JF4–JF11, CW1–CW3) are each sized to fill the height. Their proportions are correct, but they are not to a common scale: JF5 and JF10 appear the same height although JF10 is the larger cover. CW4 is drawn at CW1's scale.
+- Each file has a `viewBox="0 0 W 104"`, where `W` is that icon's own width (28 to 296 units), with `width` and `height` attributes set to match and about 2 units of padding around the shape.
 - **Colours:** black (`#000`) linework and white (`#fff`) interiors on a transparent background. The white interiors are intentional: covers read as solid lids when drawn over a map. Texture marks are black at 22% opacity.
 - Files contain only filled paths: no strokes, no text, no `id`s. Several can be inlined on one page without clashes.
 
